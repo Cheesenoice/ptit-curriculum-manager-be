@@ -8,6 +8,7 @@ const nganhRoutes = require("./routes/nganhRoutes");
 const chuongTrinhDaoTaoRoutes = require("./routes/chuongTrinhDaoTaoRoutes");
 const monHocRoutes = require("./routes/monHocRoutes"); // Thêm route mới
 const giangVienRoutes = require("./routes/giangVienRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/api", nganhRoutes);
 app.use("/api", chuongTrinhDaoTaoRoutes);
 app.use("/api", monHocRoutes); // Sử dụng route mới
 app.use("/api", giangVienRoutes);
+app.use("/api", dashboardRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

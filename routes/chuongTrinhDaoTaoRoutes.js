@@ -101,4 +101,12 @@ router.delete(
   (req, res) => chuongTrinhDaoTaoController.xoaChuongTrinhDaoTao(req, res)
 );
 
+// API cập nhật chương trình đào tạo
+router.put(
+  "/ctdt/capnhat",
+  verifyToken,
+  restrictTo("Phòng đào tạo"),
+  (req, res) => chuongTrinhDaoTaoController.capNhatChuongTrinhDaoTao(req, res)
+);
+
 module.exports = router;

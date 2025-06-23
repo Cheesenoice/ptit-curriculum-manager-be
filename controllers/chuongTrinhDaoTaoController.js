@@ -351,6 +351,38 @@ class ChuongTrinhDaoTaoController {
     );
     return res.status(result.success ? 200 : 400).json(result);
   }
+
+  async capNhatChuongTrinhDaoTao(req, res) {
+    const {
+      maChuongTrinh,
+      tenChuongTrinh,
+      maNganh,
+      trinhDoDaoTao,
+      hinhThucDaoTao,
+      namApDung,
+    } = req.body;
+    if (
+      !maChuongTrinh ||
+      !tenChuongTrinh ||
+      !maNganh ||
+      !trinhDoDaoTao ||
+      !hinhThucDaoTao ||
+      !namApDung
+    ) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Thiếu thông tin bắt buộc" });
+    }
+    const result = await this.chuongTrinhDaoTaoModel.capNhatChuongTrinhDaoTao(
+      maChuongTrinh,
+      tenChuongTrinh,
+      maNganh,
+      trinhDoDaoTao,
+      hinhThucDaoTao,
+      namApDung
+    );
+    return res.status(result.success ? 200 : 400).json(result);
+  }
 }
 
 module.exports = ChuongTrinhDaoTaoController;

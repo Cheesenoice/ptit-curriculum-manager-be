@@ -512,6 +512,33 @@ class ChuongTrinhDaoTaoModel {
       return { success: false, message: error.message };
     }
   }
+
+  async capNhatChuongTrinhDaoTao(
+    maChuongTrinh,
+    tenChuongTrinh,
+    maNganh,
+    trinhDoDaoTao,
+    hinhThucDaoTao,
+    namApDung
+  ) {
+    try {
+      const pool = await poolPromise;
+      await pool
+        .request()
+        .input("MaChuongTrinh", sql.VarChar(10), maChuongTrinh)
+        .input("TenChuongTrinh", sql.NVarChar(100), tenChuongTrinh)
+        .input("MaNganh", sql.VarChar(10), maNganh)
+        .input("TrinhDoDaoTao", sql.NVarChar(50), trinhDoDaoTao)
+        .input("HinhThucDaoTao", sql.NVarChar(50), hinhThucDaoTao)
+        .input("NamApDung", sql.Int, namApDung)
+        .query(
+          `UPDATE ChuongTrinhDaoTao SET TenChuongTrinh = @TenChuongTrinh, MaNganh = @MaNganh, TrinhDoDaoTao = @TrinhDoDaoTao, HinhThucDaoTao = @HinhThucDaoTao, NamApDung = @NamApDung WHERE MaChuongTrinh = @MaChuongTrinh`
+        );
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  }
 }
 
 module.exports = ChuongTrinhDaoTaoModel;
